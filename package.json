@@ -1,0 +1,45 @@
+{
+  "name": "yojimbo",
+  "version": "0.1.0",
+  "description": "Animated border beam effect for React components. A glowing light trail that travels along the border of any element.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [
+    "react",
+    "animated-border",
+    "border-beam",
+    "glowing-border",
+    "css-animation",
+    "ui-effect",
+    "tailwind"
+  ],
+  "author": "selfishprimate",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "@types/react": "^18"
+  }
+}
