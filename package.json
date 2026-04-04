@@ -1,6 +1,6 @@
 {
   "name": "yojimbo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Animated border beam effect for React components. A glowing light trail that travels along the border of any element.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
