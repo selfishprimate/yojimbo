@@ -1,6 +1,10 @@
-# Yojimbo
+<p align="center">
+  <img src="yojimbo-logo.png" alt="Yojimbo" width="200" />
+</p>
 
-Animated border beam effect for React. A glowing light trail that travels along the border of any element.
+<h1 align="center">Yojimbo</h1>
+
+<p align="center">Animated border beam effect for React. A glowing light trail that travels along the border of any element.</p>
 
 Named after Akira Kurosawa's epic 1961 samurai film *Yojimbo*, starring the legendary Toshiro Mifune. The effect is inspired by the gleam of a samurai sword — a sharp, luminous edge that catches the light as it moves.
 
