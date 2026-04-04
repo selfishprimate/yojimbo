@@ -1,6 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+
+const STYLE_ID = "yojimbo-keyframes";
+
+function injectKeyframes() {
+  if (typeof document === "undefined") return;
+  if (document.getElementById(STYLE_ID)) return;
+  const style = document.createElement("style");
+  style.id = STYLE_ID;
+  style.textContent = `
+@keyframes yojimbo-trail {
+  0% { offset-distance: 0%; }
+  100% { offset-distance: 100%; }
+}
+@keyframes yojimbo-trail-offset {
+  0% { offset-distance: 50%; }
+  100% { offset-distance: 150%; }
+}`;
+  document.head.appendChild(style);
+}
 
 export interface YojimboProps {
   /** Color of the light beam. Default: "#3B82F6" */
@@ -37,6 +56,10 @@ export function Yojimbo({
   beams = 2,
   className,
 }: YojimboProps) {
+  useEffect(() => {
+    injectKeyframes();
+  }, []);
+
   const frameStyle: React.CSSProperties = {
     position: "absolute",
     inset: `${-thickness}px`,
