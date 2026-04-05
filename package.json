@@ -17,7 +17,8 @@
   ],
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch"
+    "dev": "tsup --watch",
+    "website": "npm run dev --prefix website"
   },
   "keywords": [
     "react",

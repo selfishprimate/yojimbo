@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #09090b;
+  color: #fafafa;
+}
+
+code,
+pre {
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Glitch effect */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.glitch::before {
+  filter: hue-rotate(200deg) saturate(1.8) brightness(1.2);
+  mix-blend-mode: screen;
+  opacity: 0.6;
+  animation: glitch-1 4s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  filter: hue-rotate(260deg) saturate(2) brightness(1.1);
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  animation: glitch-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+  0%, 85% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  86% {
+    clip-path: inset(20% 0 40% 0);
+    transform: translate(-4px, 1px);
+  }
+  88% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(3px, -1px);
+  }
+  90% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  92% {
+    clip-path: inset(40% 0 30% 0);
+    transform: translate(-3px, 2px);
+  }
+  94% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, 0);
+  }
+  96%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-2 {
+  0%, 80% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  81% {
+    clip-path: inset(50% 0 20% 0);
+    transform: translate(4px, -2px);
+  }
+  83% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-2px, 1px);
+  }
+  85% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  90% {
+    clip-path: inset(30% 0 40% 0);
+    transform: translate(3px, 1px);
+  }
+  92% {
+    clip-path: inset(70% 0 5% 0);
+    transform: translate(-4px, -1px);
+  }
+  94%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+}

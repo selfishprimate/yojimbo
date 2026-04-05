@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2026-04-06
+
+### Changed
+- **BREAKING:** `speed` prop now controls actual speed — higher values mean faster animation (previously it was duration in seconds, so higher meant slower). Default value (20) produces the same result as before.
+- **BREAKING:** `direction="counterclockwise"` now swaps `colorFrom` and `colorTo` so the leading edge color always matches the direction of travel.
+- Glow orbs now always stay ahead of the lead beam regardless of direction.
+- Animation properties use individual CSS properties instead of shorthand to prevent direction override.
+
+### Added
+- Website with landing page, live examples (Button, Card, Search Input), and interactive Playground.
+- Playground page with real-time prop controls (color pickers, sliders, toggles) and copyable code output.
+
 ## [1.0.1] - 2026-04-04
 
 ### Added

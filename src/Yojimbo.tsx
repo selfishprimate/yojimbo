@@ -26,6 +26,14 @@ function injectKeyframes() {
 @keyframes yojimbo-trail-offset-tail {
   0% { offset-distance: ${50 - TRAIL_OFFSET}%; }
   100% { offset-distance: ${150 - TRAIL_OFFSET}%; }
+}
+@keyframes yojimbo-glow {
+  0% { offset-distance: ${TRAIL_OFFSET}%; }
+  100% { offset-distance: ${100 + TRAIL_OFFSET}%; }
+}
+@keyframes yojimbo-glow-offset {
+  0% { offset-distance: ${50 + TRAIL_OFFSET}%; }
+  100% { offset-distance: ${150 + TRAIL_OFFSET}%; }
 }`;
   document.head.appendChild(style);
 }
@@ -41,7 +49,7 @@ export interface YojimboProps {
   colorFromSize?: number;
   /** Size of the trailing color blob in px. Defaults to size / 3 */
   colorToSize?: number;
-  /** Animation duration in seconds for a full loop. Default: 20 */
+  /** Speed of the animation. Higher = faster. Default: 20 */
   speed?: number;
   /** Border thickness visible through the mask in px. Default: 1 */
   thickness?: number;
@@ -81,10 +89,14 @@ export function Yojimbo({
     injectKeyframes();
   }, []);
 
+  const duration = 400 / speed;
+  const isReverse = direction === "counterclockwise";
+  const animDir = isReverse ? "reverse" as const : "normal" as const;
+  const leadColor = isReverse ? colorTo : colorFrom;
+  const tailColor = isReverse ? colorFrom : colorTo;
   const defaultBlobSize = size / 3;
   const fromSize = colorFromSize ?? defaultBlobSize;
   const toSize = colorToSize ?? defaultBlobSize;
-  const animDir = direction === "counterclockwise" ? "reverse" as const : "normal" as const;
 
   const frameStyle: React.CSSProperties = {
     position: "absolute",
@@ -106,25 +118,33 @@ export function Yojimbo({
     offsetRotate: "0deg",
     mixBlendMode: "screen",
     pointerEvents: "none",
+  };
+
+  const animBase: React.CSSProperties = {
+    animationDuration: `${duration}s`,
+    animationTimingFunction: "linear",
+    animationIterationCount: "infinite",
     animationDirection: animDir,
   };
 
   const leadStyle1: React.CSSProperties = {
     ...blobBase,
+    ...animBase,
     width: `${fromSize}px`,
     height: `${fromSize}px`,
-    background: `radial-gradient(circle, ${colorFrom} 0%, ${colorFrom} 20%, transparent 70%)`,
+    background: `radial-gradient(circle, ${leadColor} 0%, ${leadColor} 20%, transparent 70%)`,
     filter: `blur(${blur}px)`,
-    animation: `yojimbo-trail ${speed}s linear infinite`,
+    animationName: "yojimbo-trail",
   };
 
   const tailStyle1: React.CSSProperties = {
     ...blobBase,
+    ...animBase,
     width: `${toSize}px`,
     height: `${toSize}px`,
-    background: `radial-gradient(circle, ${colorTo} 0%, ${colorTo} 20%, transparent 70%)`,
+    background: `radial-gradient(circle, ${tailColor} 0%, ${tailColor} 20%, transparent 70%)`,
     filter: `blur(${blur * 1.2}px)`,
-    animation: `yojimbo-trail-tail ${speed}s linear infinite`,
+    animationName: "yojimbo-trail-tail",
   };
 
   const leadStyle2: React.CSSProperties = {
@@ -159,7 +179,6 @@ export function Yojimbo({
     filter: `blur(${glowBlur}px)`,
     opacity: glowOpacity,
     mixBlendMode: "screen",
-    animationDirection: animDir,
   };
 
   return (
@@ -167,11 +186,11 @@ export function Yojimbo({
       {glow && (
         <>
           <div style={glowOrbStyle} className={className}>
-            <div style={{ ...glowDot, animation: `yojimbo-trail ${speed}s linear infinite` }} />
+            <div style={{ ...glowDot, ...animBase, animationName: isReverse ? "yojimbo-trail-tail" : "yojimbo-glow" }} />
           </div>
           {beams === 2 && (
             <div style={glowOrbStyle} className={className}>
-              <div style={{ ...glowDot, animation: `yojimbo-trail-offset ${speed}s linear infinite` }} />
+              <div style={{ ...glowDot, ...animBase, animationName: isReverse ? "yojimbo-trail-offset-tail" : "yojimbo-glow-offset" }} />
             </div>
           )}
         </>
