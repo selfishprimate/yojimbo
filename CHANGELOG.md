@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1] - 2026-04-06
+
+### Changed
+- Added featured image to README.
+- Added SEO meta tags and OG image to website.
+
 ## [2.0.0] - 2026-04-06
 
 ### Changed
