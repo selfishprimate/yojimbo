@@ -2,10 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.3] - 2026-04-08
+
+### Fixed
+- Fixed README featured image not displaying on npm by switching to markdown image syntax.
+
 ## [2.0.2] - 2026-04-08
 
 ### Fixed
-- Fixed README featured image not displaying on npm package page by using absolute GitHub URL.
+- Fixed README featured image path to use absolute GitHub URL.
 
 ## [2.0.1] - 2026-04-06
 
