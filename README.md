@@ -1,5 +1,5 @@
 <p>
-  <img src="yojimbo-featured-image.jpg" alt="Yojimbo" width="100%" />
+  <img src="https://raw.githubusercontent.com/selfishprimate/yojimbo/main/yojimbo-featured-image.jpg" alt="Yojimbo" width="100%" />
 </p>
 
 <p>Animated border beam effect for React. A glowing light trail that travels along the border of any element.</p>
